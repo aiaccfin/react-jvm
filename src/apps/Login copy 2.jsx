@@ -36,14 +36,8 @@ function Login() {
             const data = await response.json();
 
             if (data.success) {
-                const { firstname, lastname, company, email } = data.user;
                 setUser(data.user);
-                setSuccessMessage(
-                    `Welcome, <strong>${firstname} ${lastname}</strong>! ` +
-                    `You are logged in as: ${username}.<br>` +
-                    `Company: ${company}<br>` +
-                    `Email: ${email}`
-                );
+                setSuccessMessage('You are logged in as: ' + username); // Set success message
                 setError(null); // Clear any previous errors
             } else {
                 setError('Invalid login credentials');
@@ -81,13 +75,7 @@ function Login() {
                 </div>
 
                 {error && <div style={{ color: 'red' }}>{error}</div>}
-                {/* {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>} Display success message */}
-                {successMessage && (
-                    <div
-                        style={{ color: 'green' }}
-                        dangerouslySetInnerHTML={{ __html: successMessage }}
-                    />
-                )} {/* Display success message with HTML content */}
+                {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>} {/* Display success message */}
 
                 <MDBBtn type="submit" className="mb-4">Sign in</MDBBtn>
             </form>
